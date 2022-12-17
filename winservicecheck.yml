@@ -1,0 +1,24 @@
+---
+- hosts: localhosts
+  connection: local
+  tasks:
+  
+  - name: "Empty output log file and add headers to logfile"
+    shell: "echo 'HostName,ServiceName,ServiceStartMode,ServiceStateBefore,ServiceStartLatest' >winservicescheck.log"
+    
+  - name: "Empty html output log file"
+    shell: "echo '' > winservicescheck.html"
+    
+- hosts: dbservers
+  tasks:
+      - name: Check Service Status
+        win_service:
+          name: MSSQL$SQLExpress
+        register: bf_svc
+        
+      - name: Start service
+        win_service:
+        
+      
+   
+   
